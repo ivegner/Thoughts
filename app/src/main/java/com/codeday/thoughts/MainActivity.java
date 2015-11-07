@@ -3,6 +3,8 @@ package com.codeday.thoughts;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.parse.Parse;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -10,5 +12,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
+
+        Parse.initialize(this, "amWtu0dCB9xx0XJ8a4dQA4cy7XayDikxCGpdhkVb", "0XbZemPscEidvvl1NE0wrCKXQayuS48Fr7I6XF4O");
     }
 }
