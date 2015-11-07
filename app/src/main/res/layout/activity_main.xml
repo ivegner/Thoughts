@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.codeday.thoughts.MainActivity"
+    android:background="#19B5FE">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Thoughts"
+        android:id="@+id/textView"
+        android:layout_marginTop="99dp"
+        android:textStyle="bold"
+        android:textSize="56dp"
+        android:textColor="#FFFFFF"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="75dp"
+        android:text="Log In"
+        android:id="@+id/button"
+        android:background="#E4F1FE"
+        android:textColor="#34495E"
+        android:layout_below="@+id/textView"
+        android:layout_alignLeft="@+id/button2"
+        android:layout_alignStart="@+id/button2"
+        android:layout_marginTop="152dp" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="75dp"
+        android:text="Register"
+        android:id="@+id/button2"
+        android:layout_below="@+id/button"
+        android:layout_centerHorizontal="true"
+        android:background="#34495E"
+        android:textColor="#FFFFFF" />
+</RelativeLayout>
