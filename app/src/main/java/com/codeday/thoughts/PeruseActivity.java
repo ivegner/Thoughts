@@ -83,11 +83,18 @@ public class PeruseActivity extends AppCompatActivity {
         query.whereExists("Text");
         try {
             List<ParseObject> parseObjects = query.find();
-            for(int i = 0; i < parseObjects.size(); i++) {
-                myDataset.add(parseObjects.get(i).getString("Text"));
+            for (int i = 0; i < parseObjects.size(); i++) {
+                String[] tempString = parseObjects.get(i).getCreatedAt().toString().split(" ");
+                String dateString = "";
+                for (int j = 1; j < tempString.length - 1; j++) {
+                    dateString = dateString + " " + (tempString[j]);
+                }
+                myDataset.add(i, dateString.trim()
+                        + "\n" + "\n"
+                        + parseObjects.get(i).getString("Text"));
                 mAdapter.notifyDataSetChanged();
             }
-        } catch (ParseException e ) {
+        } catch (ParseException e) {
             e.printStackTrace();
         }
     }
