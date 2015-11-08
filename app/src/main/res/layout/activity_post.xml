@@ -11,7 +11,8 @@
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:id="@+id/scrollView">
+        android:id="@+id/scrollView"
+        android:scrollIndicators="none">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -31,7 +32,7 @@
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:inputType="textMultiLine"
-                android:padding="5dp"
+                android:padding="10dp"
                 android:textAlignment="viewStart"
                 android:gravity="start" />
 
@@ -53,7 +54,7 @@
                 android:layout_below="@+id/charRemainView"
                 android:layout_centerHorizontal="true"
                 android:orientation="horizontal"
-                android:layout_marginBottom="120dp">
+                android:layout_marginBottom="60dp">
 
                 <ImageView
                     android:id="@+id/imageView"
@@ -81,17 +82,5 @@
 
         </RelativeLayout>
     </ScrollView>
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@color/colorPrimary"
-        android:onClick="post"
-        android:text="Post"
-        android:textColor="#FFFFFF"
-        android:layout_alignBottom="@+id/scrollView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
