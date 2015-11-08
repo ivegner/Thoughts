@@ -8,15 +8,23 @@
     tools:context="com.codeday.thoughts.SplashScreen"
     android:background="#19B5FE">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bubbleView"
+        android:src="@drawable/thoughtbubble"
+        android:layout_centerInParent="true" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Thoughts"
-        android:id="@+id/textView2"
-        android:textColor="#FFFFFF"
+        android:id="@+id/thoughtsTextView"
+        android:textColor="#19B5FE"
         android:textSize="60dp"
         android:textStyle="italic"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignTop="@+id/bubbleView"
+        android:layout_marginTop="140dp"
+        android:layout_centerInParent="true" />
 </RelativeLayout>
