@@ -5,6 +5,18 @@
     android:layout_height="match_parent"
     tools:context="com.codeday.thoughts.PeruseActivity">
 
+    <LinearLayout
+        android:id="@+id/messageContainer"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/viewTextMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
