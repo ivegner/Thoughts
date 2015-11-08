@@ -14,7 +14,7 @@
         <activity android:name=".LoginActivity" >
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".AccountActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme" >
