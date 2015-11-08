@@ -9,4 +9,71 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.codeday.thoughts.PostActivity">
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="250dp"
+        android:id="@+id/inputText"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:editable="true"
+        android:focusableInTouchMode="true"
+        android:focusable="true"
+        android:inputType="textMultiLine"
+        android:background="@drawable/back"
+        android:alpha="0.25" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="250 words left"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/inputText"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"
+            android:src="@drawable/ic_mic_black_48dp"
+            android:adjustViewBounds="false"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView2"
+            android:src="@drawable/ic_photo_camera_black_48dp"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView3"
+            android:src="@drawable/ic_videocam_black_48dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Post"
+        android:id="@+id/button"
+        android:layout_below="@+id/textView3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="52dp"
+        android:background="@color/colorPrimary"
+        android:textColor="#FFFFFF" />
 </RelativeLayout>
