@@ -5,8 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +15,7 @@ public class PostActivity extends AppCompatActivity {
 
     private int inputLength;
     private TextView inputView;
+    private TextView charRemainView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +32,9 @@ public class PostActivity extends AppCompatActivity {
         inputView = (TextView) findViewById(R.id.inputText);
 
         inputLength = 600;
-        TextView charRemain = (TextView) findViewById(R.id.charRemainView);
-        charRemain.setText(inputLength + " characters remaining.");
+        charRemainView = (TextView) findViewById(R.id.charRemainView);
+        inputLength = 600 - inputView.getText().toString().length();
+        charRemainView.setText(inputLength + " characters remaining.");
     }
 
     @Override
@@ -65,18 +65,24 @@ public class PostActivity extends AppCompatActivity {
             parseObject.saveInBackground();
 
             Intent myIntent = new Intent(getApplicationContext(), PeruseActivity.class);
-            Toast toast = new Toast(this);
-            toast.makeText(getApplicationContext(), "Your thought has been posted.", Toast.LENGTH_LONG);
-            toast.show();
+            Toast.makeText(getApplicationContext(), "Your thought has been posted.", Toast.LENGTH_LONG).show();
             startActivity(myIntent);
         }
     }
 
     private boolean isValidInput(String str) {
-        if (str.isEmpty()) { return false; }
-
-        else if (str.length() > 600) { return false;}
-
-        else { return true; }
+        if (str.isEmpty()) {
+            Toast.makeText(getApplicationContext(), "Please enter a thought!",
+                    Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (str.length() > 600) {
+            Toast.makeText(getApplicationContext(), "Please limit your thought to 600 characters.",
+                    Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (str.length() < 10) {
+            Toast.makeText(getApplicationContext(), "Please enter more than 10 characters.",
+                    Toast.LENGTH_SHORT).show();
+            return false;
+        } else { return true; }
     }
 }

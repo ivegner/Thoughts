@@ -51,6 +51,11 @@ public class PeruseActivity extends AppCompatActivity {
         itemTouchHelper.attachToRecyclerView(mRecyclerView);
     }
 
+    @Override
+    public void onBackPressed() {
+        //Nothing!
+    }
+
     public void startPostActivity(View v){
         Intent intent = new Intent(this,PostActivity.class);
         startActivity(intent);
