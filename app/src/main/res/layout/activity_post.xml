@@ -69,7 +69,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:src="@drawable/ic_photo_camera_black_48dp" />
+                    android:src="@drawable/ic_photo_camera_black_48dp"
+                    android:onClick="takePictureWithIntent"/>
 
                 <ImageView
                     android:id="@+id/imageView3"
