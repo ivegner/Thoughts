@@ -60,23 +60,9 @@ public class PostActivity extends AppCompatActivity {
 
     public void takePictureWithIntent(View v){
         Intent pictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(pictureIntent, REQUEST_TAKE_PICTURE);
-/*
         if(pictureIntent.resolveActivity(getPackageManager())!=null){
-            // Create the File where the photo should go
-            File photoFile = null;
-            try {
-                photoFile = createImageFile();
-            } catch (IOException ex) {
-                // Error occurred while creating the File
-                ex.printStackTrace();
-            }
-            // Continue only if the File was successfully created
-            if (photoFile != null) {
-                pictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile));
-                startActivityForResult(pictureIntent, REQUEST_TAKE_PICTURE);
-            }
-        }*/
+            startActivityForResult(pictureIntent, REQUEST_TAKE_PICTURE);
+        }
     }
 
     @Override
@@ -106,7 +92,6 @@ public class PostActivity extends AppCompatActivity {
             parseObject.saveInBackground();
 
             Intent myIntent = new Intent(getApplicationContext(), PeruseActivity.class);
-            //Toast.makeText(getApplicationContext(), "Your thought has been posted.", Toast.LENGTH_LONG).show();
             startActivity(myIntent);
         }
     }
@@ -132,7 +117,6 @@ public class PostActivity extends AppCompatActivity {
         Toast.makeText(this,requestCode+" "+resultCode,Toast.LENGTH_SHORT).show();
 
         if (requestCode == REQUEST_TAKE_PICTURE && resultCode == RESULT_OK) {
-            Toast.makeText(this,"making ParseFile",Toast.LENGTH_SHORT).show();
 
             //Get Thumbnail:
             Bundle extras = data.getExtras();
@@ -141,7 +125,7 @@ public class PostActivity extends AppCompatActivity {
             try {
                 File file = createImageFile();
                 FileOutputStream output = new FileOutputStream(file);
-                imageBitmap.compress(Bitmap.CompressFormat.PNG,2,output);
+                imageBitmap.compress(Bitmap.CompressFormat.PNG,50,output);
 
                 imgFile = new ParseFile(file);
                 imgFile.saveInBackground(new SaveCallback() {
@@ -150,7 +134,6 @@ public class PostActivity extends AppCompatActivity {
                         if (e != null) {
                             Toast.makeText(PostActivity.this, "Error saving " + e.getCode(), Toast.LENGTH_LONG).show();
                         } else {
-                            Toast.makeText(PostActivity.this, "Picture added" + imgFile.getName(), Toast.LENGTH_SHORT).show();
                             parseObject.put("Picture", imgFile);
                         }
                     }
@@ -159,22 +142,6 @@ public class PostActivity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-            /*
-            File file = new File(mCurrentPhotoPath);
-            imgFile = new ParseFile(file);
-            Toast.makeText(this, "made ParseFile", Toast.LENGTH_SHORT).show();
-            imgFile.saveInBackground(new SaveCallback() {
-                @Override
-                public void done(ParseException e) {
-                    if(e!=null){
-                        Toast.makeText(PostActivity.this,"Error saving "+e.getCode(),Toast.LENGTH_LONG).show();
-                    }else{
-                        Toast.makeText(PostActivity.this, "Picture added"+imgFile.getName(), Toast.LENGTH_SHORT).show();
-                        parseObject.put("Picture",imgFile);
-                    }
-                }
-            });*/
         }
     }
     private File createImageFile() throws IOException {
