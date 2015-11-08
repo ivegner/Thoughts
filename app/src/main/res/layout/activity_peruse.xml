@@ -17,5 +17,6 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:src="@drawable/ic_create_white_48dp"
-        android:scaleType="fitCenter" />
+        android:scaleType="fitCenter"
+        android:onClick="startPostActivity"/>
 </RelativeLayout>
