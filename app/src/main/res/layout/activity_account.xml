@@ -5,19 +5,6 @@
     tools:context="com.codeday.thoughts.AccountActivity"
     android:background="#19B5FE">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Thoughts"
-        android:id="@+id/textView"
-        android:layout_marginTop="99dp"
-        android:textStyle="bold"
-        android:textSize="56sp"
-        android:textColor="#FFFFFF"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
     <Button
         android:layout_width="fill_parent"
         android:layout_height="75dp"
@@ -25,20 +12,43 @@
         android:id="@+id/loginButtonView"
         android:background="#E4F1FE"
         android:textColor="#34495E"
-        android:layout_below="@+id/textView"
-        android:layout_alignLeft="@+id/registerButtonView"
-        android:layout_alignStart="@+id/registerButtonView"
         android:layout_marginTop="152dp"
-        android:onClick="toLoginActivity" />
+        android:onClick="toLoginActivity"
+        android:layout_above="@+id/registerButtonView" />
 
     <Button
         android:layout_width="fill_parent"
         android:layout_height="75dp"
         android:text="Register"
         android:id="@+id/registerButtonView"
-        android:layout_below="@+id/loginButtonView"
         android:layout_centerHorizontal="true"
         android:background="#34495E"
         android:textColor="#FFFFFF"
-        android:onClick="toRegisterActivity" />
+        android:onClick="toRegisterActivity"
+        android:layout_alignParentBottom="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Keep track of your posts."
+        android:id="@+id/textView2"
+        android:textColor="#FFFFFF"
+        android:textSize="42dp"
+        android:textAlignment="center"
+        android:layout_above="@+id/loginButtonView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="25dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Anonymously."
+        android:id="@+id/textView"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="93dp"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

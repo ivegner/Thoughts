@@ -1,0 +1,9 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/goToAccount"
+        android:icon="@drawable/ic_account_circle_white_36dp"
+        app:showAsAction="ifRoom"
+        android:title="Account">
+    </item>
+</menu>

@@ -94,7 +94,7 @@ public class PostActivity extends AppCompatActivity {
                 return true;
         }
 
-        Intent myIntent = new Intent(getApplicationContext(), PeruseActivity.class);
+        Intent myIntent = new Intent(getApplicationContext(), ReadActivity.class);
         startActivityForResult(myIntent, 0);
         return true;
     }
@@ -105,6 +105,7 @@ public class PostActivity extends AppCompatActivity {
             parseObject.saveInBackground();
 
             Intent myIntent = new Intent(getApplicationContext(), PeruseActivity.class);
+            //Toast.makeText(getApplicationContext(), "Your thought has been posted.", Toast.LENGTH_LONG).show();
             startActivity(myIntent);
         }
     }
