@@ -1,7 +1,9 @@
 package com.codeday.thoughts;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -18,6 +20,13 @@ public class PostActivity extends AppCompatActivity {
         inputLength = 600;
         TextView charRemain = (TextView) findViewById(R.id.charRemainView);
         charRemain.setText(inputLength + " characters remaining.");
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        Intent myIntent = new Intent(getApplicationContext(), PeruseActivity.class);
+        startActivityForResult(myIntent, 0);
+        return true;
+
     }
 
     public void post(View view) {
