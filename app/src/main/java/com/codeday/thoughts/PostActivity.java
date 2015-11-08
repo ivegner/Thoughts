@@ -1,7 +1,7 @@
 package com.codeday.thoughts;
 
 import android.content.Intent;
-import android.net.Uri;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -14,10 +14,13 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
+import com.parse.SaveCallback;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -32,6 +35,8 @@ public class PostActivity extends AppCompatActivity {
     private TextView charRemainView;
     private String mCurrentPhotoPath;
     private ParseFile imgFile;
+
+    ParseObject parseObject = new ParseObject("Content");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +60,8 @@ public class PostActivity extends AppCompatActivity {
 
     public void takePictureWithIntent(View v){
         Intent pictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(pictureIntent, REQUEST_TAKE_PICTURE);
+/*
         if(pictureIntent.resolveActivity(getPackageManager())!=null){
             // Create the File where the photo should go
             File photoFile = null;
@@ -69,7 +76,7 @@ public class PostActivity extends AppCompatActivity {
                 pictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile));
                 startActivityForResult(pictureIntent, REQUEST_TAKE_PICTURE);
             }
-        }
+        }*/
     }
 
     @Override
@@ -95,12 +102,7 @@ public class PostActivity extends AppCompatActivity {
 
     public void post() {
         if(isValidInput(inputView.getText().toString())) {
-            ParseObject parseObject = new ParseObject("Content");
             parseObject.put("Text", inputView.getText().toString());
-            if(imgFile!=null) {
-                parseObject.put("Picture", imgFile);
-                Toast.makeText(this, "Picture added"+imgFile.getName(), Toast.LENGTH_SHORT).show();
-            }
             parseObject.saveInBackground();
 
             Intent myIntent = new Intent(getApplicationContext(), PeruseActivity.class);
@@ -131,16 +133,48 @@ public class PostActivity extends AppCompatActivity {
 
         if (requestCode == REQUEST_TAKE_PICTURE && resultCode == RESULT_OK) {
             Toast.makeText(this,"making ParseFile",Toast.LENGTH_SHORT).show();
-            /*
-            Get Thumbnail:
+
+            //Get Thumbnail:
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
-            mImageView.setImageBitmap(imageBitmap);
-            */
+
+            try {
+                File file = createImageFile();
+                FileOutputStream output = new FileOutputStream(file);
+                imageBitmap.compress(Bitmap.CompressFormat.PNG,2,output);
+
+                imgFile = new ParseFile(file);
+                imgFile.saveInBackground(new SaveCallback() {
+                    @Override
+                    public void done(ParseException e) {
+                        if (e != null) {
+                            Toast.makeText(PostActivity.this, "Error saving " + e.getCode(), Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(PostActivity.this, "Picture added" + imgFile.getName(), Toast.LENGTH_SHORT).show();
+                            parseObject.put("Picture", imgFile);
+                        }
+                    }
+                });
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            /*
             File file = new File(mCurrentPhotoPath);
             imgFile = new ParseFile(file);
             Toast.makeText(this, "made ParseFile", Toast.LENGTH_SHORT).show();
-            imgFile.saveInBackground();
+            imgFile.saveInBackground(new SaveCallback() {
+                @Override
+                public void done(ParseException e) {
+                    if(e!=null){
+                        Toast.makeText(PostActivity.this,"Error saving "+e.getCode(),Toast.LENGTH_LONG).show();
+                    }else{
+                        Toast.makeText(PostActivity.this, "Picture added"+imgFile.getName(), Toast.LENGTH_SHORT).show();
+                        parseObject.put("Picture",imgFile);
+                    }
+                }
+            });*/
         }
     }
     private File createImageFile() throws IOException {
