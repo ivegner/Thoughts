@@ -3,26 +3,52 @@ package com.codeday.thoughts;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
-import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class PeruseActivity extends AppCompatActivity {
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
-    private TextView textViewMessage;
-
+    String[] placeholder = {"Mercury","Venus","Earth","Mars","Jupiter","Saturn","Uranus","Neptune"};
+    ArrayList<String> myDataset = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_peruse);
 
-        textViewMessage = (TextView) findViewById(R.id.viewTextMessage);
-        findViewById(R.id.messageContainer).setOnTouchListener(new OnSwipeTouchListener(this){
-            @Override
-            public void onSwipeLeft() {
-                textViewMessage.setText("hey");
-            }
-        });
+        myDataset.addAll(Arrays.asList(placeholder));
 
+        mRecyclerView = (RecyclerView) findViewById(R.id.peruse_recycler_view);
+        mRecyclerView.setHasFixedSize(true);
+
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        mAdapter = new MyAdapter(myDataset);
+        mRecyclerView.setAdapter(mAdapter);
+
+        ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT){
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir){
+                int index = viewHolder.getLayoutPosition();
+                myDataset.remove(index);
+                mAdapter.notifyItemRemoved(index);
+            }
+        };
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleItemTouchCallback);
+        itemTouchHelper.attachToRecyclerView(mRecyclerView);
     }
 
     public void startPostActivity(View v){
