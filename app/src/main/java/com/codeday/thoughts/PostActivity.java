@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -128,8 +129,6 @@ public class PostActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Toast.makeText(this,requestCode+" "+resultCode,Toast.LENGTH_SHORT).show();
-
         if (requestCode == REQUEST_TAKE_PICTURE && resultCode == RESULT_OK) {
 
             //Get Thumbnail:
@@ -156,6 +155,10 @@ public class PostActivity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+            ImageView cameraButton = (ImageView) findViewById(R.id.cameraButton);
+            cameraButton.setAlpha(50);
+            cameraButton.setClickable(false);
         }
     }
     private File createImageFile() throws IOException {
