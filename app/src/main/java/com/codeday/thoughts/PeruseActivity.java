@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -70,6 +72,29 @@ public class PeruseActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         //Nothing!
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu_post; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_settings, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch(id) {
+            case R.id.goToAccount:
+                startAccountActivity();
+                return true;
+        }
+        return false;
+    }
+
+    public void startAccountActivity() {
+        Intent intent = new Intent(this, AccountActivity.class);
+        startActivity(intent);
     }
 
     public void startPostActivity(View v) {

@@ -16,11 +16,6 @@ public class AccountActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_account);
-
-        if(!isParseInitialized) {
-            Parse.initialize(this, "amWtu0dCB9xx0XJ8a4dQA4cy7XayDikxCGpdhkVb", "0XbZemPscEidvvl1NE0wrCKXQayuS48Fr7I6XF4O");
-            isParseInitialized = true;
-        }
     }
 
     public void toLoginActivity(View view) {
