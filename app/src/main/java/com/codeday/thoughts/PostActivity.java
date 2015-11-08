@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 public class PostActivity extends AppCompatActivity {
@@ -17,6 +18,12 @@ public class PostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_post);
+
+        // Make sure the scrollbar isn't visible when scrolling
+        ScrollView sv = (ScrollView)findViewById(R.id.scrollView);
+
+        sv.setVerticalScrollBarEnabled(false);
+        sv.setHorizontalScrollBarEnabled(false);
 
         inputLength = 600;
         TextView charRemain = (TextView) findViewById(R.id.charRemainView);

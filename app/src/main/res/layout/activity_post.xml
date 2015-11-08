@@ -12,7 +12,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:id="@+id/scrollView"
-        android:scrollIndicators="none">
+        android:scrollIndicators="none" >
 
         <RelativeLayout
             android:layout_width="match_parent"
