@@ -14,9 +14,10 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Thoughts"
         android:id="@+id/textView2"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
         android:textColor="#FFFFFF"
         android:textSize="60dp"
-        android:textStyle="italic" />
+        android:textStyle="italic"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="171dp" />
 </RelativeLayout>
