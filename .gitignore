@@ -1,6 +1,9 @@
 # Built application files
 /*/build/
 
+# Tool for parse manipulation
+/parse.exe
+
 # Crashlytics configuations
 com_crashlytics_export_strings.xml
 
