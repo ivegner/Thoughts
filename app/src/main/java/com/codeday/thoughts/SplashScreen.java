@@ -2,14 +2,21 @@ package com.codeday.thoughts;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
-import com.parse.Parse;
+import com.appspot.thoughtsapp_1141.thoughts.Thoughts;
+import com.appspot.thoughtsapp_1141.thoughts.model.ThoughtsIOThought;
+import com.google.api.client.extensions.android.http.AndroidHttp;
+import com.google.api.client.extensions.android.json.AndroidJsonFactory;
+
+import java.io.IOException;
 
 public class SplashScreen extends AppCompatActivity {
 
     private Context context;
+    private Thoughts service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,10 +28,18 @@ public class SplashScreen extends AppCompatActivity {
         Thread timerThread = new Thread(){
             public void run(){
                 try{
-                    // Enable Local Datastore.
-                    Parse.enableLocalDatastore(context);
+                    //Google Mobile Endpoints
+                    Thoughts.Builder builder = new Thoughts.Builder(
+                            AndroidHttp.newCompatibleTransport(),new AndroidJsonFactory(), null
+                    );
+                    service = builder.build();
 
-                    Parse.initialize(context, "amWtu0dCB9xx0XJ8a4dQA4cy7XayDikxCGpdhkVb", "0XbZemPscEidvvl1NE0wrCKXQayuS48Fr7I6XF4O");
+                    try {
+                        ThoughtsIOThought thought = service.getThought().execute();
+                        Log.d("REC THO", "new thought: "+thought.getText());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
 
                     sleep(2000);
                 } catch (InterruptedException e) {

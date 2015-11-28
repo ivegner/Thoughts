@@ -10,6 +10,7 @@
         android:required="false" />
 
     <application
+        android:name="android.support.multidex.MultiDexApplication"
         android:windowSoftInputMode="adjustPan"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"

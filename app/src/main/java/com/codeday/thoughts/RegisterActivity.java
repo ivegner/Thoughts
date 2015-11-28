@@ -1,13 +1,10 @@
 package com.codeday.thoughts;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
-import com.parse.ParseUser;
+import android.support.v7.app.AppCompatActivity;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    ParseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,6 +12,6 @@ public class RegisterActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_register);
 
-        user = new ParseUser();
+        //LOGIN
     }
 }

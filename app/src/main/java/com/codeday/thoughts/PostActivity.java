@@ -17,11 +17,6 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.parse.ParseException;
-import com.parse.ParseFile;
-import com.parse.ParseObject;
-import com.parse.SaveCallback;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -37,9 +32,6 @@ public class PostActivity extends AppCompatActivity {
     private TextView inputView;
     private TextView charRemainView;
     private String mCurrentPhotoPath;
-    private ParseFile imgFile;
-
-    ParseObject parseObject = new ParseObject("Content");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,8 +94,7 @@ public class PostActivity extends AppCompatActivity {
 
     public void post() {
         if(isValidInput(inputView.getText().toString())) {
-            parseObject.put("Text", inputView.getText().toString());
-            parseObject.saveInBackground();
+            //TODO POST
 
             Intent myIntent = new Intent(getApplicationContext(), ReadActivity.class);
             //Toast.makeText(getApplicationContext(), "Your thought has been posted.", Toast.LENGTH_LONG).show();
@@ -140,17 +131,7 @@ public class PostActivity extends AppCompatActivity {
                 FileOutputStream output = new FileOutputStream(file);
                 imageBitmap.compress(Bitmap.CompressFormat.PNG,50,output);
 
-                imgFile = new ParseFile(file);
-                imgFile.saveInBackground(new SaveCallback() {
-                    @Override
-                    public void done(ParseException e) {
-                        if (e != null) {
-                            Toast.makeText(PostActivity.this, "Error saving " + e.getCode(), Toast.LENGTH_LONG).show();
-                        } else {
-                            parseObject.put("Picture", imgFile);
-                        }
-                    }
-                });
+                //TODO PICTURE RESULT
 
             } catch (IOException e) {
                 e.printStackTrace();

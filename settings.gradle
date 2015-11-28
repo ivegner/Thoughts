@@ -1,1 +1,2 @@
-include ':app'
+include ':app', ':thoughts'
+project(':thoughts').projectDir = new File('libs/thoughts-v4/thoughts')
