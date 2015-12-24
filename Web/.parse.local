@@ -1,0 +1,10 @@
+{
+  "applications": {
+    "Thoughts": {
+      "applicationId": "amWtu0dCB9xx0XJ8a4dQA4cy7XayDikxCGpdhkVb"
+    },
+    "_default": {
+      "link": "Thoughts"
+    }
+  }
+}
